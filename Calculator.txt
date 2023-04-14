@@ -1,0 +1,61 @@
+# Calculator
+
+logo = """
+ _____________________
+|  _________________  |
+| | Pythonista   0. | |  .----------------.  .----------------.  .----------------.  .----------------. 
+| |_________________| | | .--------------. || .--------------. || .--------------. || .--------------. |
+|  ___ ___ ___   ___  | | |     ______   | || |      __      | || |   _____      | || |     ______   | |
+| | 7 | 8 | 9 | | + | | | |   .' ___  |  | || |     /  \     | || |  |_   _|     | || |   .' ___  |  | |
+| |___|___|___| |___| | | |  / .'   \_|  | || |    / /\ \    | || |    | |       | || |  / .'   \_|  | |
+| | 4 | 5 | 6 | | - | | | |  | |         | || |   / ____ \   | || |    | |   _   | || |  | |         | |
+| |___|___|___| |___| | | |  \ `.___.'\  | || | _/ /    \ \_ | || |   _| |__/ |  | || |  \ `.___.'\  | |
+| | 1 | 2 | 3 | | x | | | |   `._____.'  | || ||____|  |____|| || |  |________|  | || |   `._____.'  | |
+| |___|___|___| |___| | | |              | || |              | || |              | || |              | |
+| | . | 0 | = | | / | | | '--------------' || '--------------' || '--------------' || '--------------' |
+| |___|___|___| |___| |  '----------------'  '----------------'  '----------------'  '----------------' 
+|_____________________|
+"""
+print(logo,"Welcome to Pythonista 0.!")
+flag = False
+keep = 0
+
+def addition(first, second):
+  return first + second
+
+def subtraction(first, second):
+  return first - second
+
+def multiply(first,second):
+  return first * second
+   
+def division(first,second):
+   return first / second
+  
+operations = {'+': addition, '-': subtraction, '*':multiply, '/':division}
+
+def calculator():
+  first_number = float(input("\nWhat's the first number?: \n"))
+  
+  while not flag:
+    for key in operations:
+      print(key, end='')
+    operation = input("\nPick an operation from above: ")
+    last_number = float(input("\nWhat's the next number?: \n"))
+    
+    calc = operations[operation]
+    
+    answer = round(calc(first_number, last_number),2)
+    
+    print(f'\n{first_number} {operation} {last_number}  =  {answer}')
+  
+    next_calc = input(f"\n\nDo you wish to keep {answer} and proceed calculating (yes), or do you want to start a new calculation (no)\n?")
+    if next_calc.lower() == 'no':
+      calculator()
+    elif next_calc.lower() == 'yes':
+      first_number = answer
+      last_number = 0
+    else: exit()
+
+
+calculator()

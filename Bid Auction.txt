@@ -1,0 +1,45 @@
+from replit import clear
+
+bidding = {}
+end = True
+
+logo = '''
+                         ___________
+                         \         /
+                          )_______(
+                          |"""""""|_.-._,.---------.,_.-._
+                          |       | | |               | | ''-.
+                          |       |_| |_             _| |_..-'
+                          |_______| '-' `'---------'` '-'
+                          )"""""""(
+                         /_________\\
+                       .-------------.
+                      /_______________\\
+'''
+
+print(logo)
+print("Welcome to the secret auction program.")
+  
+def calc_winner(bidd):
+  count = 0
+  winner = ''
+  for name in bidd:
+    higher = bidd[name]
+   if higher > count:
+      count = higher
+      winner = str(name)
+  print(f"The winner is {winner} with their bid of ${count}. Congratulations!")
+
+while end:
+  name = input("What's your name?: ")
+  bid = int(input("What's your bid?: $"))
+  bidding[name] = bid
+  result = input('Are there any other bidders? Type "yes" or "no": ')
+  if result == 'no':
+    end = False
+    calc_winner(bidding)
+  elif result == 'yes':
+    clear()
+  else:
+    print("Yes or no! Run it again")
+    exit()

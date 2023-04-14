@@ -1,0 +1,47 @@
+import random
+
+logo = '''
+                  .----.
+      .---------. | == |
+      |.-"""""-.| |----|
+      ||       || | == |
+      ||       || |----|
+      |'-.....-'| |::::|
+      `"")---(""` |___.|
+     /:::::::::::\" _  "
+    /:::=======:::\`\`\
+    `"""""""""""""`  '-'
+'''
+
+print(logo)
+print("Welcome to the Number Guessing Game!")
+NUMBER = random.randint(1, 101)
+difficulty = ''
+end = False
+
+difficulty = input("First, choose a dificulty: easy or hard? ")
+if difficulty.lower() == 'easy':
+    lives = 10
+elif difficulty.lower() == 'hard':
+    lives = 5
+
+while not end:
+    guess = input("In what number am I thinking? ")
+    if int(guess) > NUMBER:
+        print("Hmm too high.")
+        lives -= 1
+        if lives == 0:
+            print("You ran out of lives!")
+            print(f"The number was: {NUMBER}")
+            end = True
+    elif int(guess) < NUMBER:
+        lives -= 1
+        print("That's too low.")
+        if lives == 0:
+            print("You ran out of lives!")
+            print(f"The number was: {NUMBER}")
+            end = True
+    elif int(guess) == NUMBER:
+        print(
+            f"Congratulations! You won the Number Guessing Game in {difficulty} difficulty!\nThe number was: {NUMBER}"
+        )
